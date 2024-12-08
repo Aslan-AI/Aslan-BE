@@ -16,7 +16,12 @@ logger = getLogger(__name__)
 PROXY_PREFIX = os.getenv("PROXY_PREFIX", "/api")
 app = FastAPI(root_path=PROXY_PREFIX)
 
-origins = ["*"]
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:5500/" # Frontend URL for local development
+    "https://ujpm.github.io/aslan-ai/",  # Production frontend URL
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
