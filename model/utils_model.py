@@ -1,10 +1,16 @@
 # model/utils_model.py
+from http.client import HTTPException
 import json
 import logging
 import os
 import psycopg2
 from sqlalchemy.ext.declarative import declarative_base
+from fastapi.security import OAuth2PasswordBearer
+from fastapi import Depends, HTTPException
+from jose import jwt, JWTError
+from sqlalchemy.orm import Session
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 

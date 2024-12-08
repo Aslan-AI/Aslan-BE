@@ -20,3 +20,4 @@ PyJWT
 bcrypt
 py-algorand-sdk
 SQLAlchemy
+python-jose==3.3.0
