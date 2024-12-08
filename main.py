@@ -8,6 +8,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from services.user_services import router as user_router
 
+from routers.sentiment_router import router as sentiment_router
+from routers.chat_router import router as chat_router
+
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
@@ -32,6 +35,11 @@ app.add_middleware(
 
 # Include other routers as needed
 app.include_router(user_router)
+
+app.include_router(sentiment_router, prefix="/sentiment", tags=["Sentiment Analysis"])
+
+# Register chat router
+app.include_router(chat_router, tags=["Chat APIs"])
 
 @app.get("/health-check")
 def health_check():
